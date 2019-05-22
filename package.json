@@ -1,0 +1,23 @@
+{
+  "name": "rpsls-api",
+  "version": "0.0.1",
+  "description": "A simple API for playing RPSLS against a bot.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rpsls",
+    "api"
+  ],
+  "author": "Brandon Thimmesch",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.0",
+    "glob": "^7.1.4",
+    "helmet": "^3.18.0",
+    "node": "^12.2.0"
+  }
+}
