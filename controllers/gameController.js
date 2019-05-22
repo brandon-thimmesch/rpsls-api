@@ -6,28 +6,37 @@ const scissors = '✂️';
 const lizard = '🦎';
 const spock = '🖖';
 
+/**
+ * @api {get} /emoji/signs GetSignsAsEmojis
+ * @apiGroup Game
+ * @apiHeader {String} x-access-token A valid JSON Web Token
+ * @apiSuccess {Object} signs An object with the selected emojis for RPSLS
+ */
 const getSignsAsEmojis = (req, res) => {
 	utils.respond(null, res, {
 		signs: {rock, paper, scissors, lizard, spock}
 	});
 }
 
-const takeTurnEmoji = (req, res) => {
-	let userChoice = req.params.sign;
-	let userWon = didWin(userChoice, true)
-	console.log(userChoice);
+/**
+ * @api {post} /emoji/play/:sign TakeTurnEmoji
+ * @apiGroup Game
+ * @apiHeader {String} x-access-token A valid JSON Web Token
+ * @apiSuccess {Object} results An object containing the user choice, the bot's choice, whether the user won, and if it was a tie
+ */
+// const takeTurnEmoji = (req, res) => {
+// 	let userChoice = req.params.sign;
+// 	let userWon = didWin(userChoice, true)
 
-	// Decode unicode from user
+// 	utils.respond(null, res, {userChoice, botChoice, userWon})
+// }
 
-	// "=ÿ"
-	// "=Ä"
-	// "U+2702"
-	// ">\u008e"
-	// "=\u0096"
-
-	utils.respond(null, res, {userChoice, botChoice, userWon})
-}
-
+/**
+ * @api {post} /play/:sign TakeTurn
+ * @apiGroup Game
+ * @apiHeader {String} x-access-token A valid JSON Web Token
+ * @apiSuccess {Object} results An object containing the user choice, the bot's choice, whether the user won, and if it was a tie
+ */
 const takeTurn = (req, res) => {
 	const results = didWin(req.params.sign, false);
 	if (results.error) {
@@ -65,6 +74,5 @@ const didWin = (userChoice, useEmojis) => {
 
 module.exports = {
 	getSignsAsEmojis,
-	takeTurnEmoji,
 	takeTurn
 }
